@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.sysmart";
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+    lintOptions {
+        disable "ResourceType"
+    }
+
+    useLibrary 'org.apache.http.legacy'
+
+}
+repositories {
+    maven {
+        // Used for downloading dependency com.github.lkorth:device-automator
+        url "https://jitpack.io"
+    }
+    mavenCentral()
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.0.0-alpha1'
+    compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
+    compile('org.apache.httpcomponents:httpmime:4.3')
+   {
+        exclude module: "httpclient"
+    }
+    compile('com.paypal.sdk:paypal-android-sdk:2.13.3') {
+        //exclude group: 'io.card'
+    }
+
+    compile "com.google.android.gms:play-services-gcm:9.0.0"
+    compile 'com.karumi:dexter:2.3.1'
+}

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sysmart">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <permission android:name="com.sysmart.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.sysmart.permission.C2D_MESSAGE" />
+
+    <application
+        android:name="com.sysmart.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.sysmart.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sysmart.MainActivity"
+            android:label="@string/title_activity_splash"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sysmart.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sysmart.SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sysmart.ChooseCityActivity"
+            android:label="@string/title_activity_choose_city"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sysmart.ProductsActivity"
+            android:label="@string/title_activity_products" >
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".app.Search" />
+
+            <intent-filter>
+            <action android:name="android.intent.action.SEARCH" />
+        </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.sysmart.ViewcartActivity"
+            android:label="@string/title_activity_viewcart" />
+        <activity
+            android:name="com.sysmart.ProductdetailActivity"
+            android:label="@string/title_activity_productdetail" >
+
+
+        </activity>
+        <activity
+            android:name="com.sysmart.CheckoutActivity"
+            android:label="@string/title_activity_checkout" />
+        <activity
+            android:name="com.sysmart.PlaceorderActivity"
+            android:label="@string/title_activity_placeorder" />
+        <activity android:name="com.sysmart.ForgotActivity"
+            android:label="Forgot password" ></activity>
+        <activity
+            android:name="com.sysmart.OrderDetailActivity"
+            android:label="@string/title_activity_order_detail" />
+        <activity android:name="com.sysmart.PaywithPaypal" />
+        <activity
+            android:name="com.sysmart.CompleteOrderActivity"
+            android:label="@string/title_activity_order_complete" />
+
+
+
+        <!-- [START gcm_receiver] -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="gcm.play.android.samples.com.gcmquickstart" />
+            </intent-filter>
+        </receiver>
+        <!-- [END gcm_receiver] -->
+
+
+        <!-- [START gcm_listener] -->
+        <service
+            android:name="gcm.MyGcmListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <!-- [END gcm_listener] -->
+        <!-- [START instanceId_listener] -->
+        <service
+            android:name="gcm.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+        <!-- [END instanceId_listener] -->
+        <service
+            android:name="gcm.RegistrationIntentService"
+            android:exported="false" />
+    </application>
+
+</manifest>
